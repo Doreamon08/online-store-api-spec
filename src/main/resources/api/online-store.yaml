@@ -1,0 +1,37 @@
+openapi: 3.0.3
+info:
+  title: Online Store API
+  description: Спецификация API для онлайн-магазина
+  version: 1.0.0
+
+servers:
+  - url: https://api.yourstore.com
+    description: Production server
+
+paths:
+  /products:
+    get:
+      summary: Получить список всех товаров
+      operationId: getAllProducts
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        price:
+          type: number
+          format: double
