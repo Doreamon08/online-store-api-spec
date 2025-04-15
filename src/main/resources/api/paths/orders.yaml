@@ -1,0 +1,57 @@
+orders:
+  get:
+    summary: Получить список всех заказов
+    responses:
+      '200':
+        description: Список заказов
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '../components/schemas.yaml#/OrderDTO'
+  post:
+    summary: Создать новый заказ
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas.yaml#/OrderDTO'
+    responses:
+      '201':
+        description: Заказ успешно создан
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas.yaml#/OrderDTO'
+
+orderById:
+  get:
+    summary: Получить заказ по ID
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: Заказ найден
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas.yaml#/OrderDTO'
+      '404':
+        description: Заказ не найден
+  delete:
+    summary: Удалить заказ по ID
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '204':
+        description: Заказ успешно удалён

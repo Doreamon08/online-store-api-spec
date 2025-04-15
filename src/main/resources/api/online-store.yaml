@@ -10,28 +10,15 @@ servers:
 
 paths:
   /products:
-    get:
-      summary: Получить список всех товаров
-      operationId: getAllProducts
-      responses:
-        '200':
-          description: Успешный ответ
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Product'
+    $ref: './paths/products.yaml'
+  /orders:
+    $ref: './paths/orders.yaml#/orders'
+  /orders/{id}:
+    $ref: './paths/orders.yaml#/orderById'
 
 components:
   schemas:
-    Product:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        price:
-          type: number
-          format: double
+    ProductDTO:
+      $ref: './components/schemas.yaml#/ProductDTO'
+    OrderDTO:
+      $ref: './components/schemas.yaml#/OrderDTO'
